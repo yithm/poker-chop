@@ -493,8 +493,53 @@ copyBtn.addEventListener(
     "click",
     ()=>{
 
-        const text =
-        resultsEl.innerText;
+        const cards =
+        document.querySelectorAll(
+            ".result-card"
+        );
+
+        const mode =
+        getMode() === "chip"
+        ? "Chip Chop"
+        : "ICM Chop";
+
+        let text =
+        "♠ 포커룰루 딜 결과 ♠\n\n";
+
+        text +=
+        `계산방식 : ${mode}\n\n`;
+
+        cards.forEach(
+            (card,index)=>{
+
+                const payout =
+                card
+                .querySelectorAll(
+                    ".result-value"
+                )[2]
+                .innerText;
+
+                let medal = "🏅";
+
+                if(index===0)
+                    medal="🥇";
+
+                if(index===1)
+                    medal="🥈";
+
+                if(index===2)
+                    medal="🥉";
+
+                text +=
+                `${medal} ${index+1}등 ${payout}\n`;
+            }
+        );
+
+        text +=
+        "\n━━━━━━━━━\n";
+
+        text +=
+        `총 지급액 ${totalPaidEl.innerText}`;
 
         navigator.clipboard
         .writeText(text);
