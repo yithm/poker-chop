@@ -64,9 +64,12 @@ function renderPlayerInputs(){
         html += `
         <div class="player-card">
 
-            <div class="player-title">
-                Player ${i}
-            </div>
+<input
+    type="text"
+    id="name${i}"
+    class="player-title-input"
+    value="플레이어 ${i}"
+>
 
             <input
                 type="text"
