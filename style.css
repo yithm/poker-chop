@@ -13,8 +13,6 @@ box-sizing:border-box;
 --card:#1a1d21;
 --card2:#20242a;
 
---gold:#d4af37;
---gold-dark:#b9962f;
 
 --text:#f5f5f5;
 --muted:#9aa1ab;
@@ -33,13 +31,8 @@ box-sizing:border-box;
 /* ===== BODY ===== */
 
 body{
-
-background:
-linear-gradient(
-180deg,
-#091018 0%,
-#0b1118 100%
-);
+background:var(--bg);
+};
 
 color:var(--text);
 
@@ -77,7 +70,7 @@ font-size:30px;
 font-weight:800;
 letter-spacing:1px;
 
-color:var(--gold);
+color:var(--text);
 
 margin-bottom:8px;
 
@@ -116,7 +109,7 @@ font-size:18px;
 
 margin-bottom:16px;
 
-color:var(--gold);
+color:var(--text);
 
 }
 
@@ -168,10 +161,10 @@ transition:.2s;
 input:focus,
 select:focus{
 
-border-color:var(--gold);
+border-color:var(--accent);
 
 box-shadow:
-0 0 0 3px rgba(212,175,55,.15);
+0 0 0 3px rgba(79,140,255,.15);
 
 }
 
@@ -222,11 +215,11 @@ transition:.2s;
 
 .radio-card input:checked + span{
 
-background:rgba(212,175,55,.15);
+background:rgba(79,140,255,.12);
 
-border-color:var(--gold);
+border-color:var(--accent);
 
-color:var(--gold);
+color:var(--accent);
 
 }
 
@@ -253,7 +246,7 @@ font-weight:700;
 
 margin-bottom:10px;
 
-color:var(--gold);
+color:var(--text);
 
 }
 
@@ -290,11 +283,7 @@ margin-bottom:20px;
 }
 
 .primary-btn:hover{
-
-background:var(--gold-dark);
-
-transform:translateY(-1px);
-
+opacity:.92;
 }
 
 .secondary-btn{
@@ -457,7 +446,7 @@ font-weight:700;
 
 .summary-row span:last-child{
 
-color:var(--gold);
+color:var(--accent);
 
 }
 
