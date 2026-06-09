@@ -28,13 +28,27 @@ function getMode(){
         'input[name="mode"]:checked'
     ).value;
 }
+function addComma(value){
 
+    value = value.replace(/,/g,"");
+
+    if(value === "") return "";
+
+    return Number(value).toLocaleString();
+}
+
+function removeComma(value){
+
+    return Number(
+        value.replace(/,/g,"")
+    ) || 0;
+}
 // ===== 입력 UI 생성 =====
 
 function renderPlayerInputs(){
 
     const count =
-    parseInt(playerCountEl.value);
+    removeComma(playerCountEl.value);
 
     let html = "";
 
@@ -48,7 +62,8 @@ function renderPlayerInputs(){
             </div>
 
             <input
-                type="number"
+                type="text"
+                inputmode="numeric"
                 id="chip${i}"
                 placeholder="칩 수 입력"
                 value="${10000*i}"
@@ -64,7 +79,7 @@ function renderPlayerInputs(){
 function renderPayoutInputs(){
 
     const count =
-    parseInt(playerCountEl.value);
+    removeComma(playerCountEl.value);
 
     let html = "";
 
@@ -78,7 +93,8 @@ function renderPayoutInputs(){
             </label>
 
             <input
-                type="number"
+                type="text"
+                inputmode="numeric"
                 id="pay${i}"
                 placeholder="0"
             >
@@ -361,7 +377,7 @@ calculateBtn.addEventListener(
     ()=>{
 
         const count =
-        parseInt(
+        removeComma(
             playerCountEl.value
         );
 
@@ -374,10 +390,10 @@ calculateBtn.addEventListener(
         ){
 
             stacks.push(
-                parseInt(
-                    document.getElementById(
-                        `chip${i}`
-                    ).value
+                removeComma(
+                document.getElementById(
+                `chip${i}`
+                ).value
                 ) || 0
             );
         }
@@ -402,7 +418,7 @@ calculateBtn.addEventListener(
         ){
 
             const totalPrize =
-            parseInt(
+            removeComma(
                 document.getElementById(
                     "totalPrize"
                 ).value
@@ -425,7 +441,7 @@ calculateBtn.addEventListener(
             ){
 
                 prizes.push(
-                    parseInt(
+                    removeComma(
                         document.getElementById(
                             `pay${i}`
                         ).value
@@ -494,7 +510,31 @@ copyBtn.addEventListener(
 );
 
 // ===== 시작 =====
+document.addEventListener(
+    "input",
+    (e)=>{
 
+        if(
+            e.target.tagName === "INPUT"
+            &&
+            e.target.type === "text"
+        ){
+
+            const cursor =
+            e.target.selectionStart;
+
+            const raw =
+            e.target.value
+            .replace(/,/g,"")
+            .replace(/[^0-9]/g,"");
+
+            e.target.value =
+            addComma(raw);
+
+        }
+
+    }
+);
 renderPlayerInputs();
 renderPayoutInputs();
 updateMode();
