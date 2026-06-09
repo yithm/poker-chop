@@ -1,71 +1,500 @@
+// ===== 초기화 =====
 
-const pc=document.getElementById('playerCount');
-for(let i=2;i<=10;i++) pc.innerHTML+=`<option>${i}</option>`;
+const playerCountEl = document.getElementById("playerCount");
+const playerInputsEl = document.getElementById("playerInputs");
+const payoutInputsEl = document.getElementById("payoutInputs");
 
-function makeInputs(){
- const n=+pc.value;
- let p='';
- for(let i=1;i<=n;i++) p+=`<label>P${i} 칩</label><input type="number" id="chip${i}" value="${10000*i}">`;
- document.getElementById('playerInputs').innerHTML=p;
+const calculateBtn = document.getElementById("calculateBtn");
+const resultsSection = document.getElementById("resultsSection");
+const resultsEl = document.getElementById("results");
+const totalPaidEl = document.getElementById("totalPaid");
 
- const icm=document.querySelector('input[name=mode]:checked').value==='icm';
- document.getElementById('payoutSection').classList.toggle('hidden',!icm);
- let pay='';
- if(icm){ for(let i=1;i<=n;i++) pay+=`<label>${i}등 상금</label><input type="number" id="pay${i}" value="${Math.max(0,(n-i+1)*10000)}">`; }
- document.getElementById('payoutInputs').innerHTML=pay;
-}
-pc.onchange=makeInputs;
-document.querySelectorAll('input[name=mode]').forEach(x=>x.onchange=makeInputs);
-makeInputs();
+const payoutStructureSection =
+document.getElementById("payoutStructureSection");
 
-function icmValues(stacks,payouts){
- const memo=new Map();
- function f(players,pays){
-   const key=players.join(',')+'|'+pays.join(',');
-   if(memo.has(key)) return memo.get(key);
-   const res=Array(stacks.length).fill(0);
-   if(pays.length===0){ memo.set(key,res); return res; }
-   const total=players.reduce((a,i)=>a+stacks[i],0);
-   for(const i of players){
-      const prob=stacks[i]/total;
-      res[i]+=prob*pays[0];
-      const rem=f(players.filter(x=>x!==i),pays.slice(1));
-      for(let k=0;k<res.length;k++) res[k]+=prob*rem[k];
-   }
-   memo.set(key,res); return res;
- }
- return f(stacks.map((_,i)=>i), payouts);
+const copyBtn = document.getElementById("copyBtn");
+
+const modeRadios =
+document.querySelectorAll('input[name="mode"]');
+
+// ===== 유틸 =====
+
+function numberFormat(n){
+    return Math.round(n).toLocaleString();
 }
 
-document.getElementById('calculateBtn').onclick=()=>{
- const n=+pc.value;
- const mode=document.querySelector('input[name=mode]:checked').value;
- const result=document.getElementById('results');
+function getMode(){
+    return document.querySelector(
+        'input[name="mode"]:checked'
+    ).value;
+}
 
- let chips=[];
- for(let i=1;i<=n;i++) chips.push(+document.getElementById('chip'+i).value||0);
+// ===== 입력 UI 생성 =====
 
- let payouts=[];
+function renderPlayerInputs(){
 
- if(mode==='chip'){
-   const prize=+document.getElementById('totalPrize').value||0;
-   const total=chips.reduce((a,b)=>a+b,0);
-   payouts=chips.map(c=>Math.floor((prize*c/total)/100)*100);
-   const used=payouts.reduce((a,b)=>a+b,0);
-   const leader=chips.indexOf(Math.max(...chips));
-   payouts[leader]+=prize-used;
- } else {
-   let pay=[];
-   for(let i=1;i<=n;i++) pay.push(+document.getElementById('pay'+i).value||0);
-   payouts=icmValues(chips,pay).map(v=>Math.round(v/100)*100);
-   const target=pay.reduce((a,b)=>a+b,0);
-   const used=payouts.reduce((a,b)=>a+b,0);
-   const leader=chips.indexOf(Math.max(...chips));
-   payouts[leader]+=target-used;
- }
+    const count =
+    parseInt(playerCountEl.value);
 
- let rows=chips.map((c,i)=>({i:i+1,c,p:payouts[i]}))
- .sort((a,b)=>b.c-a.c);
+    let html = "";
 
- result.innerHTML=rows.map((r,idx)=>`<div class="result">${idx===0?'🥇':idx===1?'🥈':idx===2?'🥉':'🏅'} P${r.i}<br>칩 ${r.c.toLocaleString()}<br>상금 ${r.p.toLocaleString()}원</div>`).join('');
-};
+    for(let i=1;i<=count;i++){
+
+        html += `
+        <div class="player-card">
+
+            <div class="player-title">
+                Player ${i}
+            </div>
+
+            <input
+                type="number"
+                id="chip${i}"
+                placeholder="칩 수 입력"
+                value="${10000*i}"
+            >
+
+        </div>
+        `;
+    }
+
+    playerInputsEl.innerHTML = html;
+}
+
+function renderPayoutInputs(){
+
+    const count =
+    parseInt(playerCountEl.value);
+
+    let html = "";
+
+    for(let i=1;i<=count;i++){
+
+        html += `
+        <div class="field">
+
+            <label>
+            ${i}등 상금
+            </label>
+
+            <input
+                type="number"
+                id="pay${i}"
+                placeholder="0"
+            >
+
+        </div>
+        `;
+    }
+
+    payoutInputsEl.innerHTML = html;
+}
+
+function updateMode(){
+
+    const mode = getMode();
+
+    if(mode === "icm"){
+        payoutStructureSection
+        .classList.remove("hidden");
+    }else{
+        payoutStructureSection
+        .classList.add("hidden");
+    }
+
+    renderPayoutInputs();
+}
+
+playerCountEl.addEventListener(
+    "change",
+    ()=>{
+        renderPlayerInputs();
+        renderPayoutInputs();
+    }
+);
+
+modeRadios.forEach(r=>{
+    r.addEventListener(
+        "change",
+        updateMode
+    );
+});
+
+// ===== 진짜 ICM =====
+
+function calculateICM(stacks, payouts){
+
+    const memo = new Map();
+
+    function recurse(players, prizes){
+
+        const key =
+        players.join(",")
+        + "|"
+        + prizes.join(",");
+
+        if(memo.has(key)){
+            return memo.get(key);
+        }
+
+        const result =
+        Array(stacks.length).fill(0);
+
+        if(prizes.length === 0){
+            memo.set(key,result);
+            return result;
+        }
+
+        const totalStack =
+        players.reduce(
+            (a,p)=>a+stacks[p],
+            0
+        );
+
+        for(const player of players){
+
+            const prob =
+            stacks[player]
+            /
+            totalStack;
+
+            result[player] +=
+            prob * prizes[0];
+
+            const remaining =
+            recurse(
+                players.filter(
+                    p=>p!==player
+                ),
+                prizes.slice(1)
+            );
+
+            for(
+                let i=0;
+                i<result.length;
+                i++
+            ){
+                result[i] +=
+                prob * remaining[i];
+            }
+        }
+
+        memo.set(key,result);
+
+        return result;
+    }
+
+    const players =
+    stacks.map((_,i)=>i);
+
+    return recurse(
+        players,
+        payouts
+    );
+}
+
+// ===== Chip Chop =====
+
+function calculateChipChop(
+    stacks,
+    totalPrize
+){
+
+    const total =
+    stacks.reduce((a,b)=>a+b,0);
+
+    let payouts =
+    stacks.map(s=>
+        Math.floor(
+            (
+                totalPrize
+                *
+                s
+                /
+                total
+            )/100
+        )*100
+    );
+
+    const used =
+    payouts.reduce(
+        (a,b)=>a+b,
+        0
+    );
+
+    const remain =
+    totalPrize - used;
+
+    const leader =
+    stacks.indexOf(
+        Math.max(...stacks)
+    );
+
+    payouts[leader] += remain;
+
+    return payouts;
+}
+
+// ===== 결과 출력 =====
+
+function renderResults(
+    stacks,
+    payouts
+){
+
+    const totalStack =
+    stacks.reduce(
+        (a,b)=>a+b,
+        0
+    );
+
+    let rows =
+    stacks.map(
+        (chips,index)=>({
+
+            player:index+1,
+
+            chips,
+
+            payout:payouts[index],
+
+            pct:
+            (
+                chips
+                /
+                totalStack
+                *
+                100
+            )
+
+        })
+    );
+
+    rows.sort(
+        (a,b)=>
+        b.chips-a.chips
+    );
+
+    let html = "";
+
+    rows.forEach(
+        (r,index)=>{
+
+            let medal = "🏅";
+
+            if(index===0)
+                medal="🥇";
+
+            if(index===1)
+                medal="🥈";
+
+            if(index===2)
+                medal="🥉";
+
+            html += `
+            <div class="result-card">
+
+                <div class="rank">
+                    ${medal}
+                </div>
+
+                <div class="result-name">
+                    Player ${r.player}
+                </div>
+
+                <div class="result-row">
+                    <span>칩</span>
+                    <span class="result-value">
+                        ${numberFormat(r.chips)}
+                    </span>
+                </div>
+
+                <div class="result-row">
+                    <span>점유율</span>
+                    <span class="result-value">
+                        ${r.pct.toFixed(1)}%
+                    </span>
+                </div>
+
+                <div class="result-row">
+                    <span>상금</span>
+                    <span class="result-value">
+                        ${numberFormat(r.payout)}원
+                    </span>
+                </div>
+
+                <div class="bar-wrap">
+                    <div
+                        class="bar"
+                        style="
+                        width:${r.pct}%;
+                        ">
+                    </div>
+                </div>
+
+            </div>
+            `;
+        }
+    );
+
+    resultsEl.innerHTML = html;
+
+    const totalPaid =
+    payouts.reduce(
+        (a,b)=>a+b,
+        0
+    );
+
+    totalPaidEl.innerText =
+    numberFormat(totalPaid)
+    + "원";
+
+    resultsSection
+    .classList
+    .remove("hidden");
+}
+
+// ===== 계산 버튼 =====
+
+calculateBtn.addEventListener(
+    "click",
+    ()=>{
+
+        const count =
+        parseInt(
+            playerCountEl.value
+        );
+
+        let stacks = [];
+
+        for(
+            let i=1;
+            i<=count;
+            i++
+        ){
+
+            stacks.push(
+                parseInt(
+                    document.getElementById(
+                        `chip${i}`
+                    ).value
+                ) || 0
+            );
+        }
+
+        if(
+            stacks.reduce(
+                (a,b)=>a+b,
+                0
+            ) === 0
+        ){
+            alert(
+                "칩 수를 입력하세요."
+            );
+            return;
+        }
+
+        let payouts = [];
+
+        if(
+            getMode()
+            === "chip"
+        ){
+
+            const totalPrize =
+            parseInt(
+                document.getElementById(
+                    "totalPrize"
+                ).value
+            ) || 0;
+
+            payouts =
+            calculateChipChop(
+                stacks,
+                totalPrize
+            );
+
+        }else{
+
+            let prizes = [];
+
+            for(
+                let i=1;
+                i<=count;
+                i++
+            ){
+
+                prizes.push(
+                    parseInt(
+                        document.getElementById(
+                            `pay${i}`
+                        ).value
+                    ) || 0
+                );
+            }
+
+            payouts =
+            calculateICM(
+                stacks,
+                prizes
+            );
+
+            payouts =
+            payouts.map(
+                p=>
+                Math.round(
+                    p/100
+                )*100
+            );
+
+            const target =
+            prizes.reduce(
+                (a,b)=>a+b,
+                0
+            );
+
+            const used =
+            payouts.reduce(
+                (a,b)=>a+b,
+                0
+            );
+
+            const leader =
+            stacks.indexOf(
+                Math.max(...stacks)
+            );
+
+            payouts[leader] +=
+            target-used;
+        }
+
+        renderResults(
+            stacks,
+            payouts
+        );
+    }
+);
+
+// ===== 결과 복사 =====
+
+copyBtn.addEventListener(
+    "click",
+    ()=>{
+
+        const text =
+        resultsEl.innerText;
+
+        navigator.clipboard
+        .writeText(text);
+
+        alert(
+            "결과가 복사되었습니다."
+        );
+    }
+);
+
+// ===== 시작 =====
+
+renderPlayerInputs();
+renderPayoutInputs();
+updateMode();
