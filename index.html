@@ -49,40 +49,46 @@ value="icm">
 </div>
 </div>
 
-<div class="field" id="chipPrizeSection">
+<div class="field-row">
 
-<label for="totalPrize">
-총 상금 (원)
-</label>
+    <div class="field small">
+        <label for="totalPrize">총 상금 (원)</label>
+        <input
+            type="text"
+            id="totalPrize"
+            placeholder="총 상금 입력">
+    </div>
 
-<input
-type="text"
-id="totalPrize"
-placeholder="총 상금 입력">
-</div>
-
-<div class="field">
-
-<label for="playerCount">
-플레이어 수
-</label>
-
-<select id="playerCount">
-
-<option value="2">2명</option>
-<option value="3">3명</option>
-<option value="4">4명</option>
-<option value="5">5명</option>
-<option value="6">6명</option>
-<option value="7">7명</option>
-<option value="8">8명</option>
-<option value="9">9명</option>
-<option value="10">10명</option>
-
-</select>
+    <div class="field small">
+        <label for="playerCount">플레이어 수</label>
+        <select id="playerCount">
+            <option value="2">2명</option>
+            <option value="3">3명</option>
+            <option value="4">4명</option>
+            <option value="5">5명</option>
+            <option value="6">6명</option>
+            <option value="7">7명</option>
+            <option value="8">8명</option>
+            <option value="9">9명</option>
+            <option value="10">10명</option>
+        </select>
+    </div>
 
 </div>
-
+.field-row{
+    display:flex;
+    gap:12px;
+    align-items:flex-end;
+}
+  .field.small{
+    flex:1;
+}
+  .field.small:first-child{
+    flex:2;
+}
+.field.small:last-child{
+    flex:1;
+}
 </section>
 
 <section
