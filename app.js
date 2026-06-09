@@ -443,7 +443,7 @@ calculateBtn.addEventListener(
             ) === 0
         ){
             alert(
-                "상금과 칩 수를 입력하세요."
+                "칩을 입력하세요."
             );
             return;
         }
@@ -455,19 +455,23 @@ calculateBtn.addEventListener(
             === "chip"
         ){
 
-            const totalPrize =
-            removeComma(
-                document.getElementById(
-                    "totalPrize"
-                ).value
-            ) || 0;
+const totalPrize =
+removeComma(
+    document.getElementById(
+        "totalPrize"
+    ).value
+) || 0;
 
-            payouts =
-            calculateChipChop(
-                stacks,
-                totalPrize
-            );
+if(totalPrize <= 0){
+    alert("총 상금을 입력하세요.");
+    return;
+}
 
+payouts =
+calculateChipChop(
+    stacks,
+    totalPrize
+);
         }else{
 
             let prizes = [];
@@ -486,6 +490,19 @@ calculateBtn.addEventListener(
                     ) || 0
                 );
             }
+ // 1등 상금 체크
+    if(prizes[0] <= 0){
+        alert("1등 상금을 입력하세요.");
+        return;
+    }
+
+    const totalPrizePool =
+    prizes.reduce((a,b)=>a+b,0);
+
+    if(totalPrizePool <= 0){
+        alert("상금 구조를 입력하세요.");
+        return;
+    }
 
             payouts =
             calculateICM(
