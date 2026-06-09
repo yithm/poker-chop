@@ -101,7 +101,9 @@ margin:10px 0;
 box-shadow:var(--shadow);
 
 }
-
+.card:last-child{
+margin-bottom:0;
+}
 /* ===== SECTION TITLES ===== */
 
 h2{
