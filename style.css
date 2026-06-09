@@ -159,11 +159,9 @@ transition:.2s;
 }
 
 input:focus,
-select:focus{
-
-border-color:var(--accent);
-box-shadow: 0 0 0 3px rgba(79,140,255,.18);
-    transform:translateY(-1px);
+select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(79,140,255,.22);
 
 }
 
