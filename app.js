@@ -18,16 +18,7 @@ const modeRadios =
 document.querySelectorAll('input[name="mode"]');
 
 // ===== 유틸 =====
-const existingValues = {};
 
-document
-.querySelectorAll(
-    "#payoutInputs input"
-)
-.forEach(input=>{
-    existingValues[input.id] =
-    input.value;
-});
 function numberFormat(n){
     return Math.round(n).toLocaleString();
 }
@@ -98,10 +89,20 @@ function renderPlayerInputs(){
 function renderPayoutInputs(){
 
     const count =
-    removeComma(playerCountEl.value);
+    parseInt(playerCountEl.value);
+
+    const existingValues = {};
+
+    document
+    .querySelectorAll(
+        "#payoutInputs input"
+    )
+    .forEach(input=>{
+        existingValues[input.id] =
+        input.value;
+    });
 
     let html = "";
-
     for(let i=1;i<=count;i++){
 
         html += `
