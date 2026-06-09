@@ -324,7 +324,7 @@ opacity:.92;
 .player-title-input{
     display:block;
 
-    width:140px;
+    width:120px;
 
     -webkit-appearance:none;
     appearance:none;
@@ -332,18 +332,20 @@ opacity:.92;
     background:transparent;
     border:none;
 
-    color:#cfcfcf;
+    color:#bdbdbd;
 
-    font-size:14px;
+    font-size:13px;
     font-weight:500;
+
+    line-height:1.1;
 
     text-align:left;
 
-    margin-bottom:4px;
+    margin-bottom:2px;
 
-    padding-left:12px;
-    padding-right:0;
+    padding:0 0 0 8px;
 }
+
 .player-title-input:focus{
     outline:none;
     color:#ffffff;
