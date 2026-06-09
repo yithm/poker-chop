@@ -263,6 +263,7 @@ transition:.2s;
 }
 
 .primary-btn{
+box-shadow:0 6px 16px rgba(79,140,255,.2);
 
 width:100%;
 
@@ -365,6 +366,18 @@ margin-bottom:8px;
 .result-card:first-child{
 border-color:var(--accent);
 box-shadow:0 0 0 1px rgba(79,140,255,.15);
+position:relative;
+overflow:hidden;
+}
+}
+.result-card:first-child::before{
+content:"";
+position:absolute;
+left:0;
+top:0;
+width:3px;
+height:100%;
+background:var(--accent);
 }
 .result-name{
 
@@ -480,7 +493,8 @@ display:none;
 @media (max-width:600px){
 
 body{
-
+max-width:480px;
+margin:0 auto;
 padding:14px;
 
 }
