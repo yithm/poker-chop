@@ -322,24 +322,26 @@ opacity:.92;
 
 }
 .player-title-input{
-    width:100%;
-    background:none;
+    width:120px;
+
+    background:transparent;
     border:none;
 
-    color:#d8d8d8;
+    color:#bdbdbd;
 
-    font-size:14px;
+    font-size:12px;
     font-weight:600;
 
     text-align:left;
 
-    margin-bottom:6px;
+    margin-bottom:4px;
 
     padding:0;
 }
 
 .player-title-input:focus{
     outline:none;
+    color:#ffffff;
 }
 /* ===== RESULTS ===== */
 
