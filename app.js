@@ -88,7 +88,7 @@ function renderPlayerInputs(){
                 type="text"
                 inputmode="numeric"
                 id="chip${i}"
-                placeholder="칩 수 입력"
+                placeholder="칩 입력"
                 value="${
                existingValues[`chip${i}`]
                 || ""
