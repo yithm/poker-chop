@@ -9,23 +9,24 @@ box-sizing:border-box;
 :root{
 
 --bg:#0b1118;
---card:#17212b;
---card2:#1f2b38;
+
+--card:#141b23;
+--card2:#1c2632;
 
 --gold:#d4af37;
 --gold-dark:#b9962f;
 
 --text:#ffffff;
---muted:#9ca7b5;
+--muted:#98a2b3;
 
---border:#2d3a48;
+--border:#26313d;
 
 --success:#2ecc71;
 
---radius:18px;
+--radius:16px;
 
 --shadow:
-0 10px 30px rgba(0,0,0,.35);
+0 8px 24px rgba(0,0,0,.28);
 
 }
 
