@@ -321,7 +321,20 @@ margin-top:16px;
 opacity:.92;
 
 }
+.player-title-input{
+    width:100%;
+    background:none;
+    border:none;
+    color:#fff;
+    font-size:18px;
+    font-weight:700;
+    text-align:center;
+    margin-bottom:10px;
+}
 
+.player-title-input:focus{
+    outline:none;
+}
 /* ===== RESULTS ===== */
 
 .result-card{
