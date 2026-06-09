@@ -18,7 +18,16 @@ const modeRadios =
 document.querySelectorAll('input[name="mode"]');
 
 // ===== 유틸 =====
+const existingValues = {};
 
+document
+.querySelectorAll(
+    "#payoutInputs input"
+)
+.forEach(input=>{
+    existingValues[input.id] =
+    input.value;
+});
 function numberFormat(n){
     return Math.round(n).toLocaleString();
 }
@@ -44,7 +53,18 @@ function removeComma(value){
 function renderPlayerInputs(){
 
     const count =
-    removeComma(playerCountEl.value);
+    parseInt(playerCountEl.value);
+
+    const existingValues = {};
+
+    document
+    .querySelectorAll(
+        "#playerInputs input"
+    )
+    .forEach(input=>{
+        existingValues[input.id] =
+        input.value;
+    });
 
     let html = "";
 
@@ -58,12 +78,15 @@ function renderPlayerInputs(){
             </div>
 
             <input
-                 type="text"
-                 inputmode="numeric"
-                 id="chip${i}"
-                 placeholder="칩 수 입력"
-                 value=""
-            >
+                type="text"
+                inputmode="numeric"
+                id="chip${i}"
+                placeholder="칩 수 입력"
+                value="${
+               existingValues[`chip${i}`]
+                || ""
+                  }"
+              >
 
         </div>
         `;
@@ -88,12 +111,16 @@ function renderPayoutInputs(){
             ${i}등 상금
             </label>
 
-            <input
-                type="text"
-                inputmode="numeric"
-                id="pay${i}"
-                placeholder="0"
-            >
+     <input
+    type="text"
+    inputmode="numeric"
+    id="pay${i}"
+    placeholder="0"
+    value="${
+        existingValues[`pay${i}`]
+        || ""
+    }"
+>
 
         </div>
         `;
