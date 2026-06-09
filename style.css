@@ -141,7 +141,7 @@ color:#d7dce3;
 
 input,
 select{
-  height: 44px;
+  height: 36px;
   padding: 0 12px;
 border-radius:12px;
   line-height: 1.2;
@@ -197,7 +197,7 @@ display:flex;
 justify-content:center;
 align-items:center;
 
-    height:42px;
+    height:36px;
     font-size:14px;
 
 border-radius:14px;
@@ -313,7 +313,7 @@ opacity:.92;
     width: 60px;
     max-width: 110px;
 
-    height: 26px;
+    height: 20px;
 
     padding: 0 6px;
 
