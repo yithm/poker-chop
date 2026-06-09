@@ -66,7 +66,6 @@ function renderPlayerInputs(){
 
 <input
     type="text"
-    inputmode="text"
 
     id="name${i}"
 
