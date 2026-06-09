@@ -62,11 +62,11 @@ function renderPlayerInputs(){
             </div>
 
             <input
-                type="text"
-                inputmode="numeric"
-                id="chip${i}"
-                placeholder="칩 수 입력"
-                value="${10000*i}"
+                 type="text"
+                 inputmode="numeric"
+                 id="chip${i}"
+                 placeholder="칩 수 입력"
+                 value=""
             >
 
         </div>
