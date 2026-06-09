@@ -77,6 +77,7 @@ function renderPlayerInputs(){
     autocomplete="off"
     autocorrect="off"
     spellcheck="false"
+    autocapitalize="off"
 
     value="${
         existingValues[`name${i}`]
