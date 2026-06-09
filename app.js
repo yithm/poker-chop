@@ -29,16 +29,12 @@ function getMode(){
     ).value;
 }
 function addComma(value){
-
     value = value.replace(/,/g,"");
-
-    if(value === "") return "";
-
+    if(!value) return "";
     return Number(value).toLocaleString();
 }
 
 function removeComma(value){
-
     return Number(
         value.replace(/,/g,"")
     ) || 0;
@@ -510,31 +506,23 @@ copyBtn.addEventListener(
 );
 
 // ===== 시작 =====
-document.addEventListener(
-    "input",
-    (e)=>{
+document.addEventListener("input", (e)=>{
 
-        if(
-            e.target.tagName === "INPUT"
-            &&
-            e.target.type === "text"
-        ){
+    if(
+        e.target.tagName === "INPUT"
+        &&
+        e.target.type === "text"
+    ){
 
-            const cursor =
-            e.target.selectionStart;
-
-            const raw =
-            e.target.value
+        const raw =
+        e.target.value
             .replace(/,/g,"")
             .replace(/[^0-9]/g,"");
 
-            e.target.value =
-            addComma(raw);
-
-        }
-
+        e.target.value =
+        addComma(raw);
     }
-);
+});
 renderPlayerInputs();
 renderPayoutInputs();
 updateMode();
