@@ -326,6 +326,9 @@ opacity:.92;
 
     width:140px;
 
+    -webkit-appearance:none;
+    appearance:none;
+
     background:transparent;
     border:none;
 
@@ -338,8 +341,8 @@ opacity:.92;
 
     margin-bottom:8px;
 
-    padding:0;
-    padding-left:8px;
+    padding-left:12px;
+    padding-right:0;
 }
 .player-title-input:focus{
     outline:none;
