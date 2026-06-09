@@ -528,3 +528,17 @@ font-size:16px;
 }
 
 }
+.field-row{
+    display:flex;
+    gap:12px;
+    align-items:flex-end;
+}
+  .field.small{
+    flex:1;
+}
+  .field.small:first-child{
+    flex:2;
+}
+.field.small:last-child{
+    flex:1;
+}
