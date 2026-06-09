@@ -293,123 +293,73 @@ function calculateChipChop(
 
 // ===== 결과 출력 =====
 
-function renderResults(
-    stacks,
-    payouts
-){
+function renderResults(stacks, payouts){
 
-    const totalStack =
-    stacks.reduce(
-        (a,b)=>a+b,
-        0
-    );
+    const totalStack = stacks.reduce((a,b)=>a+b,0);
 
-    let rows =
-    stacks.map(
-        (chips,index)=>({
+    const rows = stacks.map((chips,index)=>({
 
-            player:index+1,
-             name:
-        document.getElementById(`name${index+1}`).value,
+        name: document.getElementById(`name${index+1}`).value || `플레이어 ${index+1}`,
+        chips,
+        payout: payouts[index],
+        pct: totalStack ? (chips / totalStack * 100) : 0
+    }));
 
-            chips,
-
-            payout:payouts[index],
-
-            pct:
-            (
-                chips
-                /
-                totalStack
-                *
-                100
-            )
-
-        })
-    );
-
-    rows.sort(
-        (a,b)=>
-        b.chips-a.chips
-    );
+    // 칩 많은 순 정렬 (OK)
+    rows.sort((a,b)=>b.chips - a.chips);
 
     let html = "";
 
-    rows.forEach(
-        (r,index)=>{
+    rows.forEach((r,index)=>{
 
-            let medal = "🏅";
+        let medal = "🏅";
+        if(index===0) medal="🥇";
+        if(index===1) medal="🥈";
+        if(index===2) medal="🥉";
 
-            if(index===0)
-                medal="🥇";
+        html += `
+<div class="result-card">
 
-            if(index===1)
-                medal="🥈";
+    <div class="result-name">
+        ${medal} ${index + 1}등 ${r.name}
+    </div>
 
-            if(index===2)
-                medal="🥉";
+    <div class="result-row">
+        <span>칩</span>
+        <span class="result-value">
+            ${numberFormat(r.chips)}
+        </span>
+    </div>
 
-            html += `
-            <div class="result-card">
+    <div class="result-row">
+        <span>점유율</span>
+        <span class="result-value">
+            ${r.pct.toFixed(1)}%
+        </span>
+    </div>
 
+    <div class="result-row">
+        <span>상금</span>
+        <span class="result-value">
+            ${numberFormat(r.payout)}원
+        </span>
+    </div>
 
+    <div class="bar-wrap">
+        <div class="bar" style="width:${r.pct}%"></div>
+    </div>
 
-<div class="result-name">
-    ${medal} ${index + 1}등 ${r.name}
-                </div>
-
-                <div class="result-row">
-                    <span>칩</span>
-                    <span class="result-value">
-                        ${numberFormat(r.chips)}
-                    </span>
-                </div>
-
-                <div class="result-row">
-                    <span>점유율</span>
-                    <span class="result-value">
-                        ${r.pct.toFixed(1)}%
-                    </span>
-                </div>
-
-                <div class="result-row">
-                    <span>상금</span>
-                    <span class="result-value">
-                        ${numberFormat(r.payout)}원
-                    </span>
-                </div>
-
-                <div class="bar-wrap">
-                    <div
-                        class="bar"
-                        style="
-                        width:${r.pct}%;
-                        ">
-                    </div>
-                </div>
-
-            </div>
-            `;
-        }
-    );
+</div>
+`;
+    });
 
     resultsEl.innerHTML = html;
 
-    const totalPaid =
-    payouts.reduce(
-        (a,b)=>a+b,
-        0
-    );
+    const totalPaid = payouts.reduce((a,b)=>a+b,0);
+    totalPaidEl.innerText = numberFormat(totalPaid) + "원";
 
-    totalPaidEl.innerText =
-    numberFormat(totalPaid)
-    + "원";
-
-    resultsSection
-    .classList
-    .remove("hidden");
+    resultsSection.classList.remove("hidden");
 }
-
 // ===== 계산 버튼 =====
 
 calculateBtn.addEventListener(
@@ -549,67 +499,35 @@ calculateChipChop(
 );
 
 // ===== 결과 복사 =====
+copyBtn.addEventListener("click", ()=>{
 
-copyBtn.addEventListener(
-    "click",
-    ()=>{
+    const cards = document.querySelectorAll(".result-card");
 
-        const cards =
-        document.querySelectorAll(
-            ".result-card"
-        );
+    const mode = getMode() === "chip" ? "Chip Chop" : "ICM Chop";
 
-        const mode =
-        getMode() === "chip"
-        ? "Chip Chop"
-        : "ICM Chop";
+    let text = "♠ 포커룰루 딜 결과 ♠\n\n";
+    text += `계산방식 : ${mode}\n\n`;
 
-        let text =
-        "♠ 포커룰루 딜 결과 ♠\n\n";
+    cards.forEach((card,index)=>{
 
-        text +=
-        `계산방식 : ${mode}\n\n`;
+        const name = card.querySelector(".result-name").innerText;
+        const payout = card.querySelectorAll(".result-value")[2].innerText;
 
-        cards.forEach(
-            (card,index)=>{
+        let medal = "🏅";
+        if(index===0) medal="🥇";
+        if(index===1) medal="🥈";
+        if(index===2) medal="🥉";
 
-                const payout =
-                card
-                .querySelectorAll(
-                    ".result-value"
-                )[2]
-                .innerText;
+        text += `${medal} ${name} - ${payout}\n`;
+    });
 
-                let medal = "🏅";
+    text += "\n━━━━━━━━━\n";
+    text += `총 지급액 ${totalPaidEl.innerText}`;
 
-                if(index===0)
-                    medal="🥇";
+    navigator.clipboard.writeText(text);
 
-                if(index===1)
-                    medal="🥈";
-
-                if(index===2)
-                    medal="🥉";
-
-                text +=
-                `${medal} ${index+1}등 ${payout}\n`;
-            }
-        );
-
-        text +=
-        "\n━━━━━━━━━\n";
-
-        text +=
-        `총 지급액 ${totalPaidEl.innerText}`;
-
-        navigator.clipboard
-        .writeText(text);
-
-        alert(
-            "결과가 복사되었습니다."
-        );
-    }
-);
+    alert("결과가 복사되었습니다.");
+});
 
 // ===== 시작 =====
 document.addEventListener("input", (e)=>{
