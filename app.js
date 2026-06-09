@@ -306,12 +306,10 @@ function renderResults(
             html += `
             <div class="result-card">
 
-                <div class="rank">
-                    ${medal}
-                </div>
+
 
                 <div class="result-name">
-                    Player ${r.player}
+                ${medal} ${index + 1}등
                 </div>
 
                 <div class="result-row">
