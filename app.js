@@ -401,7 +401,7 @@ calculateBtn.addEventListener(
             ) === 0
         ){
             alert(
-                "칩 수를 입력하세요."
+                "상금과 칩 수를 입력하세요."
             );
             return;
         }
