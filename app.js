@@ -586,11 +586,13 @@ copyBtn.addEventListener(
 // ===== 시작 =====
 document.addEventListener("input", (e)=>{
 
-    if(
-        e.target.tagName === "INPUT"
-        &&
-        e.target.type === "text"
-    ){
+  if(
+    e.target.id.startsWith("chip")
+    ||
+    e.target.id.startsWith("pay")
+    ||
+    e.target.id === "totalPrize"
+){
 
         const raw =
         e.target.value
