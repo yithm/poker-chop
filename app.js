@@ -64,16 +64,25 @@ function renderPlayerInputs(){
         html += `
         <div class="player-card">
 
-           <input
-             type="text"
-             id="name${i}"
-             class="player-title-input"
-             placeholder="플레이어 ${i}"
-             value="${
-              existingValues[`name${i}`]
-                || ""
-                 }"
-             />
+<input
+    type="text"
+    inputmode="text"
+
+    id="name${i}"
+
+    class="player-title-input"
+
+    placeholder="플레이어 ${i}"
+
+    autocomplete="off"
+    autocorrect="off"
+    spellcheck="false"
+
+    value="${
+        existingValues[`name${i}`]
+        || ""
+    }"
+/>
 
             <input
                 type="text"
