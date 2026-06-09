@@ -309,6 +309,8 @@ function renderResults(
         (chips,index)=>({
 
             player:index+1,
+             name:
+        document.getElementById(`name${index+1}`).value,
 
             chips,
 
@@ -352,8 +354,8 @@ function renderResults(
 
 
 
-                <div class="result-name">
-                ${medal} ${index + 1}등
+<div class="result-name">
+    ${medal} ${index + 1}등 ${r.name}
                 </div>
 
                 <div class="result-row">
