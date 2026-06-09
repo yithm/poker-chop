@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-</title> </title>
+<title> Lulu </title>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -57,7 +57,9 @@ value="icm">
   type="text"
   id="totalPrize"
   placeholder="총 상금 입력"
-  inputmode="numeric">
+  inputmode="numeric"
+  autocomplete="off"
+  spellcheck="false">
     </div>
 
     <div class="field small">
@@ -104,36 +106,26 @@ class="primary-btn">
 계산하기
 
 </button>
+<section id="resultsSection" class="hidden">
 
-<section
-id="resultsSection"
-class="hidden">
+  <h2>결과</h2>
 
-<h2>결과</h2>
+  <div id="results">
+    <p class="subtitle">계산 버튼을 눌러 결과를 확인하세요</p>
+  </div>
 
-<div id="results"></div>
+  <div class="summary">
+    <div class="summary-row">
+      <span>총 지급액</span>
+      <span id="totalPaid">0원</span>
+    </div>
+  </div>
 
-<div class="summary">
-
-<div class="summary-row">
-<span>총 지급액</span>
-<span id="totalPaid">
-0원
-</span>
-</div>
-
-</div>
-
-<button
-id="copyBtn"
-class="secondary-btn">
-
-결과 복사
-
-</button>
+  <button id="copyBtn" class="secondary-btn">
+    결과 복사
+  </button>
 
 </section>
-
 <footer>
 <div class="footer-text">
 Made by Yithm
