@@ -49,19 +49,35 @@ value="icm">
 </div>
 </div>
 
-</section>
+<div class="field-row">
 
-<section class="card">
+    <div class="field small">
+        <label for="totalPrize">총 상금 (원)</label>
+        <input
+  type="text"
+  id="totalPrize"
+  placeholder="총 상금 입력"
+  inputmode="numeric"
+  autocomplete="off"
+  spellcheck="false">
+    </div>
 
-<h2>총 상금</h2>
+    <div class="field small">
+        <label for="playerCount">플레이어 수</label>
+        <select id="playerCount">
+            <option value="2">2명</option>
+            <option value="3">3명</option>
+            <option value="4">4명</option>
+            <option value="5">5명</option>
+            <option value="6">6명</option>
+            <option value="7">7명</option>
+            <option value="8">8명</option>
+            <option value="9">9명</option>
+            <option value="10">10명</option>
+        </select>
+    </div>
 
-<input
-type="text"
-id="totalPrize"
-placeholder="총 상금 입력"
-inputmode="numeric"
-autocomplete="off"
-spellcheck="false">
+</div>
 
 </section>
 
@@ -77,31 +93,15 @@ id="payoutStructureSection">
 
 <section class="card">
 
-<div class="section-header">
-
-<h2>플레이어</h2>
-
-<select
-id="playerCount"
-class="player-count-select">
-
-<option value="2">2명</option>
-<option value="3">3명</option>
-<option value="4">4명</option>
-<option value="5">5명</option>
-<option value="6">6명</option>
-<option value="7">7명</option>
-<option value="8">8명</option>
-<option value="9">9명</option>
-<option value="10">10명</option>
-
-</select>
-
-</div>
+<h2>플레이어 칩</h2>
 
 <div id="playerInputs"></div>
 
+</section>
 
+<button
+id="calculateBtn"
+class="primary-btn">
 
 계산하기
 
