@@ -584,3 +584,10 @@ input, select, textarea {
 input:focus {
   background-color: var(--card2) !important;
 }
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100dvh;
+}
