@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title> Lulu </title>
+<title>포커 룰루</title>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -14,122 +15,147 @@
 <div class="container">
 
 <header>
-<h1>♠ 프라이즈 계산기 ♠</h1>
-<!--
-<p class="subtitle">
-Chip Chop & ICM Calculator
-</p>
--->
+    <h1>♠ 프라이즈 계산기 ♠</h1>
 </header>
+
+<!-- 계산 방식 -->
 
 <section class="card">
 
-<div class="field">
-<label>계산 방식</label>
+```
+<label class="section-label">
+    계산 방식
+</label>
 
 <div class="mode-selector">
 
-<label class="radio-card">
-<input
-type="radio"
-name="mode"
-value="chip"
-checked>
-<span>Chip Chop</span>
-</label>
-
-<label class="radio-card">
-<input
-type="radio"
-name="mode"
-value="icm">
-<span>ICM Chop</span>
-</label>
-
-</div>
-</div>
-
-<div class="field-row">
-
-    <div class="field small">
-        <label for="totalPrize">총 상금 (원)</label>
+    <label class="radio-card">
         <input
-  type="text"
-  id="totalPrize"
-  placeholder="총 상금 입력"
-  inputmode="numeric"
-  autocomplete="off"
-  spellcheck="false">
-    </div>
+            type="radio"
+            name="mode"
+            value="chip"
+            checked>
+        <span>Chip Chop</span>
+    </label>
 
-    <div class="field small">
-        <label for="playerCount">플레이어 수</label>
-        <select id="playerCount">
-            <option value="2">2명</option>
-            <option value="3">3명</option>
-            <option value="4">4명</option>
-            <option value="5">5명</option>
-            <option value="6">6명</option>
-            <option value="7">7명</option>
-            <option value="8">8명</option>
-            <option value="9">9명</option>
-            <option value="10">10명</option>
-        </select>
-    </div>
+    <label class="radio-card">
+        <input
+            type="radio"
+            name="mode"
+            value="icm">
+        <span>ICM Chop</span>
+    </label>
 
 </div>
+```
 
 </section>
 
-<section
-class="card hidden"
-id="payoutStructureSection">
-
-<h2>ICM 상금 구조</h2>
-
-<div id="payoutInputs"></div>
-
-</section>
+<!-- 총 상금 -->
 
 <section class="card">
 
-<h2>플레이어 칩</h2>
+```
+<h2>총 상금</h2>
+
+<input
+    type="text"
+    id="totalPrize"
+    placeholder="총 상금 입력"
+    inputmode="numeric">
+```
+
+</section>
+
+<!-- ICM 상금 구조 -->
+
+<section
+    id="payoutStructureSection"
+    class="card hidden">
+
+```
+<h2>ICM 상금 구조</h2>
+
+<div id="payoutInputs"></div>
+```
+
+</section>
+
+<!-- 플레이어 -->
+
+<section class="card">
+
+```
+<div class="section-header">
+
+    <h2>플레이어</h2>
+
+    <select id="playerCount">
+
+        <option value="2">2명</option>
+        <option value="3">3명</option>
+        <option value="4">4명</option>
+        <option value="5">5명</option>
+        <option value="6">6명</option>
+        <option value="7">7명</option>
+        <option value="8">8명</option>
+        <option value="9">9명</option>
+        <option value="10">10명</option>
+
+    </select>
+
+</div>
 
 <div id="playerInputs"></div>
+```
 
 </section>
 
 <button
-id="calculateBtn"
-class="primary-btn">
+ id="calculateBtn"
+ class="primary-btn">
 
+```
 계산하기
+```
 
 </button>
-<section id="resultsSection" class="hidden">
 
-  <h2>결과</h2>
+<!-- 결과 -->
 
-  <div id="results">
-    <p class="subtitle">계산 버튼을 눌러 결과를 확인하세요</p>
-  </div>
+<section
+    id="resultsSection"
+    class="card hidden">
 
-  <div class="summary">
+```
+<h2>결과</h2>
+
+<div id="results"></div>
+
+<div class="summary">
+
     <div class="summary-row">
-      <span>총 지급액</span>
-      <span id="totalPaid">0원</span>
+        <span>총 지급액</span>
+        <span id="totalPaid">0원</span>
     </div>
-  </div>
 
-  <button id="copyBtn" class="secondary-btn">
+</div>
+
+<button
+    id="copyBtn"
+    class="secondary-btn">
+
     결과 복사
-  </button>
+
+</button>
+```
 
 </section>
+
 <footer>
-<div class="footer-text">
-Made by Yithm
-</div>
+    <div class="footer-text">
+        Made by Yithm
+    </div>
 </footer>
 
 </div>
