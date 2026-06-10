@@ -335,56 +335,20 @@ function renderResults(
 
     let html = "";
 
-    rows.forEach(
-        (r,index)=>{
+rows.forEach((r,index)=>{
+    let medal = "🏅";
+    if(index===0) medal="🥇";
+    if(index===1) medal="🥈";
+    if(index===2) medal="🥉";
 
-            let medal = "🏅";
-
-            if(index===0)
-                medal="🥇";
-
-            if(index===1)
-                medal="🥈";
-
-            if(index===2)
-                medal="🥉";
-
-            html += `
-           html += `
+    html += `
 <div class="result-card">
 
     <div class="result-name">
         ${medal} ${index + 1}등 ${r.name}
     </div>
 
-    <div class="result-row">
-        <span>칩</span>
-        <span class="result-value">
-            ${numberFormat(r.chips)}
-        </span>
-    </div>
-
-    <div class="result-row">
-        <span>점유율</span>
-        <span class="result-value">
-            ${r.pct.toFixed(1)}%
-        </span>
-    </div>
-
-    <div class="result-row">
-        <span>상금</span>
-        <span class="result-value">
-            ${numberFormat(r.payout)}원
-        </span>
-    </div>
-
-    <div class="bar-wrap">
-        <div class="bar" style="width:${r.pct}%"></div>
-    </div>
-
-</div>
-`;
-
+  
                 <div class="result-row">
                     <span>칩</span>
                     <span class="result-value">
