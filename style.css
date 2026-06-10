@@ -141,15 +141,14 @@ color:#d7dce3;
 
 input,
 select{
-  height: 36px;
+  height: 44px;
   padding: 0 12px;
 border-radius:12px;
   line-height: 1.2;
 border:1px solid var(--border);
 
  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
-  color: var(--text);
-  background: var(--card2);
+color:white;
 
 font-size:16px;
 
@@ -197,7 +196,7 @@ display:flex;
 justify-content:center;
 align-items:center;
 
-    height:36px;
+    height:42px;
     font-size:14px;
 
 border-radius:14px;
@@ -307,33 +306,32 @@ margin-top:var(--space-4);
 opacity:.92;
 
 }
-.player-title-input {
-    display: inline-block;
+.player-title-input{
+    display:block;
 
-    width: 80px;
-    max-width: 110px;
+    width:100%;
+max-width:140px;
 
-    height: 20px;
+    -webkit-appearance:none;
+    appearance:none;
 
-    padding: 0 6px;
+    background:transparent;
+    border:none;
 
-    font-size: 12px;
-    font-weight: 500;
+    color:#bdbdbd;
 
-    line-height: normal; /* ★ 핵심 */
+    font-size:13px;
+    font-weight:500;
 
-    background: transparent;
-    border: none;
+    line-height:1.1;
 
-    color: #bdbdbd;
+    text-align:left;
 
-    text-align: left;
+    margin-bottom:5px;
 
-    margin-bottom: 5px;
-
-    -webkit-appearance: none;
-    appearance: none;
+    padding:0 0 0 8px;
 }
+
 .player-title-input:focus{
     outline:none;
     color:#ffffff;
@@ -550,36 +548,4 @@ font-size:16px;
   .field.small:last-child {
     flex: none;
   }
-}
-
-input,
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-
-  background-color: var(--card2) !important;
-  color: var(--text) !important;
-}
-input {
-  border-radius: 12px;
-  -webkit-tap-highlight-color: transparent;
-}
-input:disabled,
-input:read-only {
-  -webkit-text-fill-color: var(--text);
-  opacity: 1;
-}
-input, select, textarea {
-  -webkit-appearance: none;
-  appearance: none;
-
-  background-color: var(--card2) !important;
-  color: var(--text) !important;
-
-  -webkit-text-fill-color: var(--text) !important; /* ★ iOS 핵심 */
-  opacity: 1 !important;
-}
-input:focus {
-  background-color: var(--card2) !important;
 }
