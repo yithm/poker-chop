@@ -23,17 +23,6 @@ function numberFormat(n){
     return Math.round(n).toLocaleString();
 }
 
-function clearResults() {
-  results.innerHTML =
-    '<p class="subtitle">계산 버튼을 눌러 결과를 확인하세요</p>';
-
-  totalPaid.textContent = '0원';
-
-  resultsSection.classList.add('hidden');
-}
-
-modeRadios.forEach(radio => {
-  radio.addEventListener('change', () => {
 
 function clearResults() {
   resultsEl.innerHTML =
@@ -43,8 +32,8 @@ function clearResults() {
 
   resultsSection.classList.add('hidden');
 }
-  });
-});
+
+
 function getMode(){
     return document.querySelector(
         'input[name="mode"]:checked'
