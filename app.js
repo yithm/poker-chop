@@ -14,8 +14,7 @@ document.getElementById("payoutStructureSection");
 
 const copyBtn = document.getElementById("copyBtn");
 
-const modeRadios =
-document.querySelectorAll('input[name="mode"]');
+
 
 // ===== 유틸 =====
 
