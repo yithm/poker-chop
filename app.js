@@ -409,9 +409,7 @@ calculateBtn.addEventListener(
 
 const totalPrize =
 removeComma(
-    document.getElementById(
-        "totalPrize"
-    ).value
+    document.getElementById("totalPrize")?.value || ""
 ) || 0;
 
 if(totalPrize <= 0){
@@ -512,24 +510,22 @@ copyBtn.addEventListener("click", ()=>{
     cards.forEach((card,index)=>{
 
         const name = card.querySelector(".result-name").innerText;
-        const payout = card.querySelectorAll(".result-value")[2].innerText;
+        const payout = card.dataset.payout;
 
         let medal = "🏅";
         if(index===0) medal="🥇";
         if(index===1) medal="🥈";
         if(index===2) medal="🥉";
 
-        text += `${medal} ${name} - ${payout}\n`;
+        text += `${medal} ${name} - ${Number(payout).toLocaleString()}원\n`;
     });
 
     text += "\n━━━━━━━━━\n";
     text += `총 지급액 ${totalPaidEl.innerText}`;
 
     navigator.clipboard.writeText(text);
-
     alert("결과가 복사되었습니다.");
 });
-
 // ===== 시작 =====
 document.addEventListener("input", (e)=>{
 
