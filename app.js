@@ -22,10 +22,6 @@ document.querySelectorAll('input[name="mode"]');
 function numberFormat(n){
     return Math.round(n).toLocaleString();
 }
-const modeRadios = document.querySelectorAll('input[name="mode"]');
-const resultsSection = document.getElementById('resultsSection');
-const results = document.getElementById('results');
-const totalPaid = document.getElementById('totalPaid');
 
 function clearResults() {
   results.innerHTML =
@@ -39,14 +35,14 @@ function clearResults() {
 modeRadios.forEach(radio => {
   radio.addEventListener('change', () => {
 
-    clearResults();
+function clearResults() {
+  resultsEl.innerHTML =
+    '<p class="subtitle">계산 버튼을 눌러 결과를 확인하세요</p>';
 
-    if (radio.value === 'icm' && radio.checked) {
-      payoutStructureSection.classList.remove('hidden');
-    } else if (radio.value === 'chip' && radio.checked) {
-      payoutStructureSection.classList.add('hidden');
-    }
+  totalPaidEl.textContent = '0원';
 
+  resultsSection.classList.add('hidden');
+}
   });
 });
 function getMode(){
