@@ -524,33 +524,7 @@ font-size:16px;
 }
 
 }
-.field-row{
-  display:flex;
-  gap:12px;
-  align-items:flex-end;
-}
 
-.field.small{
-  min-width:0;
-}
-
-.field.small.prize{
-  flex:2;
-}
-
-.field.small.count{
-  flex:1;
-}
-@media (max-width: 360px) {
-  .field-row {
-    flex-direction: column;
-  }
-
-  .field.small:first-child,
-  .field.small:last-child {
-    flex: none;
-  }
-}
 
 input,
 select {
@@ -582,4 +556,20 @@ input, select, textarea {
 }
 input:focus {
   background-color: var(--card2) !important;
+}
+.section-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:16px;
+}
+
+.section-header h2{
+    margin-bottom:0;
+}
+
+.player-count-select{
+    width:80px;
+    height:36px;
+    text-align:center;
 }
