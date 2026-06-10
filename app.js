@@ -38,7 +38,15 @@ function clearResults() {
 
 modeRadios.forEach(radio => {
   radio.addEventListener('change', () => {
+
     clearResults();
+
+    if (radio.value === 'icm' && radio.checked) {
+      payoutStructureSection.classList.remove('hidden');
+    } else if (radio.value === 'chip' && radio.checked) {
+      payoutStructureSection.classList.add('hidden');
+    }
+
   });
 });
 function getMode(){
