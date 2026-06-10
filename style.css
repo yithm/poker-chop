@@ -1,407 +1,558 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+// ===== 요소 =====
 
-:root{
+const playerCountEl = document.getElementById("playerCount");
+const playerInputsEl = document.getElementById("playerInputs");
 
-```
---bg:#121214;
+const payoutInputsEl = document.getElementById("payoutInputs");
+const payoutSectionEl = document.getElementById("payoutStructureSection");
 
---card:#1b1c20;
---card2:#24262c;
+const calculateBtn = document.getElementById("calculateBtn");
 
---text:#f5f5f5;
---muted:#9fa3aa;
+const resultsSection = document.getElementById("resultsSection");
+const resultsEl = document.getElementById("results");
 
---accent:#d65a7a;
+const totalPaidEl = document.getElementById("totalPaid");
 
---border:#32343b;
+const copyBtn = document.getElementById("copyBtn");
 
---radius:16px;
-```
+const modeRadios =
+document.querySelectorAll('input[name="mode"]');
 
-}
+// ===== 유틸 =====
 
-body{
+function getMode(){
 
 ```
-background:var(--bg);
-
-color:var(--text);
-
-font-family:
-Pretendard,
-Inter,
-sans-serif;
-
-padding:16px;
+return document.querySelector(
+    'input[name="mode"]:checked'
+).value;
 ```
 
 }
 
-.container{
+function addComma(value){
 
 ```
-max-width:520px;
-margin:0 auto;
-```
+value = value.replace(/,/g,"");
 
-}
+if(!value) return "";
 
-header{
-
-```
-text-align:center;
-margin-bottom:24px;
+return Number(value).toLocaleString();
 ```
 
 }
 
-h1{
+function removeComma(value){
 
 ```
-font-size:26px;
-font-weight:800;
-```
-
-}
-
-h2{
-
-```
-font-size:18px;
-font-weight:700;
+return Number(
+    value.replace(/,/g,"")
+) || 0;
 ```
 
 }
 
-.card{
+function numberFormat(n){
 
 ```
-background:var(--card);
-
-border:1px solid var(--border);
-
-border-radius:var(--radius);
-
-padding:16px;
-
-margin-bottom:14px;
+return Math.round(n).toLocaleString();
 ```
 
 }
 
-.section-label{
+// ===== 결과 초기화 =====
+
+function clearResults(){
 
 ```
-display:block;
+resultsEl.innerHTML = "";
 
-margin-bottom:12px;
+totalPaidEl.textContent = "0원";
 
-font-size:14px;
-
-font-weight:600;
-```
-
-}
-
-input,
-select{
-
-```
-width:100%;
-
-height:42px;
-
-padding:0 12px;
-
-border-radius:12px;
-
-border:1px solid var(--border);
-
-background:var(--card2);
-
-color:var(--text);
-
-font-size:15px;
-
-outline:none;
+resultsSection.classList.add("hidden");
 ```
 
 }
 
-input:focus,
-select:focus{
+// ===== 플레이어 생성 =====
+
+function renderPlayerInputs(){
 
 ```
-border-color:var(--accent);
+const count =
+Number(playerCountEl.value);
+
+let html = "";
+
+for(let i=1;i<=count;i++){
+
+    html += `
+    <div class="player-row">
+
+        <input
+            type="text"
+            id="name${i}"
+            class="player-name"
+            placeholder="플레이어 ${i}">
+
+        <input
+            type="text"
+            id="chip${i}"
+            class="player-chip"
+            inputmode="numeric"
+            placeholder="칩">
+
+    </div>
+    `;
+}
+
+playerInputsEl.innerHTML = html;
 ```
 
 }
 
-.mode-selector{
+// ===== ICM 상금 구조 =====
+
+function renderPayoutInputs(){
 
 ```
-display:grid;
+const count =
+Number(playerCountEl.value);
 
-grid-template-columns:1fr 1fr;
+let html = "";
 
-gap:10px;
+for(let i=1;i<=count;i++){
+
+    html += `
+    <input
+        type="text"
+        id="pay${i}"
+        inputmode="numeric"
+        placeholder="${i}등 상금"
+        style="margin-bottom:8px;">
+    `;
+}
+
+payoutInputsEl.innerHTML = html;
 ```
 
 }
 
-.radio-card input{
+// ===== 모드 =====
+
+function updateMode(){
 
 ```
-display:none;
+if(getMode()==="icm"){
+
+    payoutSectionEl
+    .classList.remove("hidden");
+
+}else{
+
+    payoutSectionEl
+    .classList.add("hidden");
+
+}
+
+clearResults();
 ```
 
 }
 
-.radio-card span{
+// ===== ICM =====
+
+function calculateICM(
+stacks,
+payouts
+){
 
 ```
-display:flex;
+const memo = new Map();
 
-align-items:center;
-justify-content:center;
+function recurse(
+    players,
+    prizes
+){
 
-height:42px;
+    const key =
+    players.join(",")
+    + "|"
+    + prizes.join(",");
 
-border-radius:12px;
+    if(memo.has(key)){
 
-background:var(--card2);
+        return memo.get(key);
 
-border:1px solid var(--border);
+    }
 
-cursor:pointer;
+    const result =
+    Array(stacks.length).fill(0);
 
-font-weight:700;
+    if(prizes.length===0){
+
+        return result;
+
+    }
+
+    const totalStack =
+    players.reduce(
+        (a,p)=>a+stacks[p],
+        0
+    );
+
+    for(const player of players){
+
+        const prob =
+        stacks[player]
+        /
+        totalStack;
+
+        result[player]
+        +=
+        prob * prizes[0];
+
+        const remain =
+        recurse(
+            players.filter(
+                p=>p!==player
+            ),
+            prizes.slice(1)
+        );
+
+        for(
+            let i=0;
+            i<result.length;
+            i++
+        ){
+
+            result[i]
+            +=
+            prob * remain[i];
+
+        }
+
+    }
+
+    memo.set(
+        key,
+        result
+    );
+
+    return result;
+
+}
+
+return recurse(
+    stacks.map((_,i)=>i),
+    payouts
+);
 ```
 
 }
 
-.radio-card input:checked + span{
+// ===== CHIP CHOP =====
+
+function calculateChipChop(
+stacks,
+totalPrize
+){
 
 ```
-border-color:var(--accent);
+const total =
+stacks.reduce(
+    (a,b)=>a+b,
+    0
+);
 
-color:var(--accent);
-```
+const payouts =
+stacks.map(
+    s =>
+    totalPrize * s / total
+);
 
-}
-
-.section-header{
-
-```
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-margin-bottom:14px;
-```
-
-}
-
-.section-header h2{
-
-```
-margin:0;
+return payouts;
 ```
 
 }
 
-.section-header select{
+// ===== 결과 =====
+
+function renderResults(
+stacks,
+payouts
+){
 
 ```
-width:90px;
-```
+const totalStack =
+stacks.reduce(
+    (a,b)=>a+b,
+    0
+);
 
-}
+const rows =
+stacks.map(
+    (chip,index)=>({
 
-.player-row{
+        name:
+        document.getElementById(
+            `name${index+1}`
+        ).value
+        ||
+        `플레이어 ${index+1}`,
 
-```
-display:flex;
+        chip,
 
-gap:10px;
+        payout:
+        payouts[index],
 
-margin-bottom:10px;
-```
+        pct:
+        totalStack
+        ?
+        chip / totalStack * 100
+        :
+        0
 
-}
+    })
+);
 
-.player-name{
+rows.sort(
+    (a,b)=>
+    b.chip - a.chip
+);
 
-```
-flex:1;
-```
+let html="";
 
-}
+rows.forEach(
+    (r,index)=>{
 
-.player-chip{
+        let medal="🏅";
 
-```
-width:140px;
-```
+        if(index===0) medal="🥇";
+        if(index===1) medal="🥈";
+        if(index===2) medal="🥉";
 
-}
+        html += `
+        <div class="result-card">
 
-.primary-btn{
+            <div class="result-name">
+                ${medal} ${r.name}
+            </div>
 
-```
-width:100%;
+            <div class="result-row">
+                <span>칩</span>
+                <span>${numberFormat(r.chip)}</span>
+            </div>
 
-height:50px;
+            <div class="result-row">
+                <span>점유율</span>
+                <span>${r.pct.toFixed(1)}%</span>
+            </div>
 
-border:none;
+            <div class="result-row">
+                <span>상금</span>
+                <span>${numberFormat(r.payout)}원</span>
+            </div>
 
-border-radius:14px;
+        </div>
+        `;
+    }
+);
 
-background:var(--accent);
+resultsEl.innerHTML = html;
 
-color:white;
+totalPaidEl.textContent =
+numberFormat(
+    payouts.reduce(
+        (a,b)=>a+b,
+        0
+    )
+) + "원";
 
-font-size:16px;
-
-font-weight:800;
-
-cursor:pointer;
-
-margin-bottom:18px;
-```
-
-}
-
-.secondary-btn{
-
-```
-width:100%;
-
-height:44px;
-
-border:none;
-
-border-radius:12px;
-
-background:#343741;
-
-color:white;
-
-font-weight:700;
-
-cursor:pointer;
-
-margin-top:12px;
-```
-
-}
-
-.result-card{
-
-```
-background:var(--card2);
-
-border-radius:14px;
-
-padding:14px;
-
-margin-bottom:10px;
-```
-
-}
-
-.result-name{
-
-```
-font-size:16px;
-
-font-weight:700;
-
-margin-bottom:8px;
+resultsSection
+.classList.remove("hidden");
 ```
 
 }
 
-.result-row{
+// ===== 계산 =====
+
+calculateBtn.addEventListener(
+"click",
+()=>{
 
 ```
-display:flex;
+    const count =
+    Number(
+        playerCountEl.value
+    );
 
-justify-content:space-between;
+    const stacks=[];
 
-margin-bottom:4px;
-```
+    for(
+        let i=1;
+        i<=count;
+        i++
+    ){
+
+        stacks.push(
+            removeComma(
+                document
+                .getElementById(
+                    `chip${i}`
+                ).value
+            )
+        );
+
+    }
+
+    if(
+        stacks.reduce(
+            (a,b)=>a+b,
+            0
+        )===0
+    ){
+
+        alert(
+            "칩을 입력하세요."
+        );
+
+        return;
+
+    }
+
+    let payouts=[];
+
+    if(getMode()==="chip"){
+
+        const totalPrize =
+        removeComma(
+            document
+            .getElementById(
+                "totalPrize"
+            ).value
+        );
+
+        if(totalPrize<=0){
+
+            alert(
+                "총 상금을 입력하세요."
+            );
+
+            return;
+
+        }
+
+        payouts =
+        calculateChipChop(
+            stacks,
+            totalPrize
+        );
+
+    }else{
+
+        const prizes=[];
+
+        for(
+            let i=1;
+            i<=count;
+            i++
+        ){
+
+            prizes.push(
+                removeComma(
+                    document
+                    .getElementById(
+                        `pay${i}`
+                    ).value
+                )
+            );
+
+        }
+
+        payouts =
+        calculateICM(
+            stacks,
+            prizes
+        );
+
+    }
+
+    renderResults(
+        stacks,
+        payouts
+    );
 
 }
-
-.summary{
-
-```
-margin-top:10px;
-
-padding-top:10px;
-
-border-top:1px solid var(--border);
 ```
 
-}
+);
 
-.summary-row{
+// ===== 콤마 =====
 
-```
-display:flex;
-
-justify-content:space-between;
-
-font-weight:700;
-```
-
-}
-
-#totalPaid{
+document.addEventListener(
+"input",
+e=>{
 
 ```
-color:var(--accent);
-```
+    if(
+        e.target.id.startsWith("chip")
+        ||
+        e.target.id.startsWith("pay")
+        ||
+        e.target.id==="totalPrize"
+    ){
 
-}
+        const raw =
+        e.target.value
+        .replace(/,/g,"")
+        .replace(/[^0-9]/g,"");
 
-.footer-text{
+        e.target.value =
+        addComma(raw);
 
-```
-text-align:center;
-
-color:var(--muted);
-
-font-size:12px;
-
-margin-top:20px;
-```
-
-}
-
-.hidden{
-
-```
-display:none;
-```
-
-}
-
-@media (max-width:480px){
-
-```
-.player-chip{
-
-    width:120px;
+    }
 
 }
 ```
 
+);
+
+// ===== 이벤트 =====
+
+playerCountEl.addEventListener(
+"change",
+()=>{
+
+```
+    renderPlayerInputs();
+    renderPayoutInputs();
+
+    clearResults();
+
 }
+```
+
+);
+
+modeRadios.forEach(
+radio=>{
+
+```
+    radio.addEventListener(
+        "change",
+        updateMode
+    );
+
+}
+```
+
+);
+
+// ===== 시작 =====
+
+renderPlayerInputs();
+
+renderPayoutInputs();
+
+updateMode();
