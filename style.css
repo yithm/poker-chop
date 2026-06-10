@@ -573,3 +573,17 @@ input:focus {
     height:36px;
     text-align:center;
 }
+.section-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:16px;
+}
+
+.section-header h2{
+    margin-bottom:0;
+}
+
+.player-count-select{
+    width:80px;
+}
