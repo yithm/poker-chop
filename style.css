@@ -116,7 +116,33 @@ margin-bottom:var(--space-2);
 color:var(--text);
 
 }
+.player-header{
 
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:12px;
+
+}
+
+.player-header h2{
+
+    margin:0;
+
+}
+
+.player-header select{
+
+    width:90px;
+
+    font-size:14px;
+
+    padding:6px 10px;
+
+}
 /* ===== FORM ===== */
 
 .field{
