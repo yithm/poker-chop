@@ -34,9 +34,6 @@ box-sizing:border-box;
  --label-weight:600;
 
 }
-input.default-value {
-  color: var(--muted);
-}
 /* ===== BODY ===== */
 
 body{
