@@ -635,15 +635,11 @@ font-size:16px;
     flex: none;
   }
 }
-@media (max-width: 900px){
-  #results{
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
 
 @media (max-width: 600px){
   #results{
-    grid-template-columns: repeat(3, 1fr);
+ display: grid;  
+ grid-template-columns: repeat(2, 1fr);
   }
 }
 input,
