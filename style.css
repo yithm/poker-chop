@@ -177,7 +177,7 @@ color:#d7dce3;
 
 input,
 select{
-  height: 30px;
+  height: 24px;
   padding: 0 12px;
 border-radius:16px;
   line-height: 1.2;
@@ -349,14 +349,14 @@ opacity:.92;
     width: 70px;
     max-width: 70px;
 
-    height: 26px;
+    height:24px;
 
     padding: 0 6px;
 
     font-size: 12px;
     font-weight: 500;
 
-    line-height: normal; /* ★ 핵심 */
+    line-height:24px;
 
     background: transparent;
     border: none;
@@ -365,7 +365,7 @@ opacity:.92;
 
     text-align: center;
 
-    margin-bottom: 2px;
+    margin-bottom:4px;
 
     -webkit-appearance: none;
     appearance: none;
