@@ -233,19 +233,16 @@ select:focus {
 /* ===== MODE SELECT ===== */
 
 .mode-selector{
-
-display:grid;
-
-grid-template-columns:1fr 1fr;
-
-gap:12px;
-
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:12px;
+  width:100%;
 }
 
 .radio-card{
 
 cursor:pointer;
-
+  width:100%;
 }
 
 .radio-card input{
