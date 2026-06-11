@@ -241,12 +241,14 @@ select:focus {
 
   width:100%;
   padding: 0 0;
+  margin-bottom: 6px;
 }
 
 .radio-card{
 
 cursor:pointer;
-  width:100%;
+ width:100%;
+ margin-bottom: 0;
 }
 
 .radio-card input{
