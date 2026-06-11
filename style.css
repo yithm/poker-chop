@@ -111,39 +111,40 @@ backdrop-filter: blur(12px);
 .player-header{
 
     display:flex;
-
     align-items:center;
 
-    gap:8px;
-
+    gap:12px;
 }
 
 .player-header h2{
 
     margin:0;
 
-    padding-left:6px;
+    padding-left:16px;
 
-    font-size:var(--label-size);
-    font-weight:var(--label-weight);
+    font-size:14px;
 
+    font-weight:600;
+
+    line-height:1;
 
 }
 
 .player-header select{
 
-    width:58px !important;
+    width:58px;
 
     height:28px;
 
     padding:0;
+
+    margin:0;
 
     font-size:13px;
 
     text-align:center;
 
     text-align-last:center;
-
 }
 /* ===== FORM ===== */
 
