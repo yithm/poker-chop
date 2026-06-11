@@ -266,7 +266,11 @@ margin-bottom:2px;
 border:1px solid var(--border);
 
 }
+.player-card input[id^="chip"]{
 
+    width:120px;
+
+}
 .player-title{
 
 font-size:15px;
