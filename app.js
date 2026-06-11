@@ -134,10 +134,7 @@ function renderPayoutInputs(){
         inputmode="numeric"
         id="pay${i}"
         placeholder="상금 입력"
-        value="${
-            existingValues[\`pay${i}\`]
-            || ""
-        }"
+        value="${existingValues[`pay${i}`] || ""}"
     >
 
 </div>
