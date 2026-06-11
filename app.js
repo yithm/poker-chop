@@ -324,8 +324,7 @@ function renderResults(stacks, payouts){
         if(index===2) medal="🥉";
 
         html += `
-<div class="result-card">
-
+<div class="result-card" data-payout="${r.payout}">
     <div class="result-name">
         ${medal} ${index + 1}등 ${r.name}
     </div>
@@ -519,7 +518,7 @@ copyBtn.addEventListener("click", ()=>{
         .replace(/[🥇🥈🥉]/g, "")
         .replace(/\d+등/g, "")
         .trim();
-        const payout = Number(card.dataset.payout || 0);
+        onst payout = Number(card.dataset.payout ?? 0);
         let medal = "🏅";
         if(index===0) medal="🥇";
         if(index===1) medal="🥈";
