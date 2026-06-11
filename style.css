@@ -311,7 +311,9 @@ color:var(--accent);
 
 .payout-row input{
 
-    flex:1;
+    width:140px;
+
+    flex:none;
 
 }
 
