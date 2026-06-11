@@ -264,9 +264,9 @@ background:var(--card2);
 
 border-radius:16px;
 
-padding:6px;
+padding:8px;
 
-margin-bottom:2px;
+margin-bottom:8px;
 
 border:1px solid var(--border);
 
@@ -349,7 +349,7 @@ margin-top:var(--space-4);
 opacity:.92;
 
 }
-.player-title-input {
+.player-title-input{
     display: inline-block;
 
     width: 70px;
@@ -371,7 +371,7 @@ opacity:.92;
 
     text-align: center;
 
-    margin-bottom:3px;
+    margin-bottom:6px;
 
     -webkit-appearance: none;
     appearance: none;
