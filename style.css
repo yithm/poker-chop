@@ -235,14 +235,14 @@ select:focus {
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 
-  width: 160px;
+  width: 180px;
   padding: 0 18px 0 12px;
   box-sizing: border-box;
 }
 
 .radio-card{
   display: block;
-  width: 100%; /* 🔥 카드 자체도 꽉 차게 */
+  width: 180px; /* 🔥 카드 자체도 꽉 차게 */
 }
 
 .radio-card input{
@@ -254,7 +254,7 @@ select:focus {
   justify-content: center;
   align-items: center;
 
-  width: 100%; /* 🔥 핵심: 동일 너비 보장 */
+  width: 180px; /* 🔥 핵심: 동일 너비 보장 */
   height: 36px;
 
   font-size: 14px;
