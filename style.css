@@ -34,10 +34,8 @@ box-sizing:border-box;
  --label-weight:600;
 
 }
-input::placeholder,
-textarea::placeholder {
+input.default-value {
   color: var(--muted);
-  opacity: 1;
 }
 /* ===== BODY ===== */
 
