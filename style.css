@@ -275,7 +275,7 @@ border:1px solid var(--border);
 
     width:120px;
     position:relative;
-    top:2px;
+    top:1px;
 
 }
 .player-title{
@@ -371,7 +371,7 @@ opacity:.92;
 
     margin-bottom:2px;
     position:relative;
-    top:1px;
+    top:0px;
     -webkit-appearance: none;
     appearance: none;
 }
