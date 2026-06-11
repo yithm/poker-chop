@@ -234,20 +234,16 @@ select:focus {
 .mode-selector{
   display:grid;
   grid-template-columns:repeat(2, 1fr);
-  gap:12px;
-
+  gap:8px;
+  margin:0;
+  padding:0;
   width:100%;
   box-sizing:border-box;
-
-  padding: 0; /* ⭐ 중요 */
-  margin: 0;
 }
 
 .radio-card{
-
-cursor:pointer;
- width:100%;
- margin-bottom: 0;
+  width:100%;
+  box-sizing:border-box;
 }
 
 .radio-card input{
