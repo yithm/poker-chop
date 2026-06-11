@@ -240,8 +240,10 @@ select:focus {
   gap:12px;
 
   width:100%;
-  padding: 0 0;
-  margin-bottom: 0;
+  box-sizing:border-box;
+
+  padding: 0; /* ⭐ 중요 */
+  margin: 0;
 }
 
 .radio-card{
@@ -276,6 +278,8 @@ border:1px solid var(--border);
 font-weight:700;
 
 transition:.2s;
+   width:100%;
+  box-sizing:border-box;
 
 }
 
