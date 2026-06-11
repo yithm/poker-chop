@@ -205,6 +205,15 @@ select:focus {
     width:140px;
 
 }
+#payoutStructureSection h2{
+
+    font-size:14px;
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+}
 /* ===== MODE SELECT ===== */
 
 .mode-selector{
