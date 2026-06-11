@@ -138,13 +138,15 @@ backdrop-filter: blur(12px);
 
     padding:0;
 
-    margin:1px auto 0px;
+    margin:0;
 
     font-size:13px;
 
     text-align:center;
 
     text-align-last:center;
+    position:relative;
+    top:1px;
 }
 /* ===== FORM ===== */
 
