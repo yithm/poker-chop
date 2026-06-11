@@ -279,6 +279,41 @@ border-color:var(--accent);
 color:var(--accent);
 
 }
+/* ===== ICM 상금 구조 ===== */
+
+.payout-row{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:8px;
+
+}
+
+.payout-row label{
+
+    width:40px;
+
+    margin:0;
+
+    padding-left:6px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    flex-shrink:0;
+
+}
+
+.payout-row input{
+
+    flex:1;
+
+}
 
 /* ===== PLAYER INPUT ===== */
 
