@@ -199,7 +199,12 @@ select:focus {
   box-shadow: 0 0 0 3px rgba(79,140,255,.22);
 
 }
+/* 총 상금 입력칸 */
+#totalPrize{
 
+    width:140px;
+
+}
 /* ===== MODE SELECT ===== */
 
 .mode-selector{
