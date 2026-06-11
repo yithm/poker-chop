@@ -515,9 +515,11 @@ copyBtn.addEventListener("click", ()=>{
 
     cards.forEach((card,index)=>{
 
-        const name = card.querySelector(".result-name").innerText;
-        const payout = card.dataset.payout;
-
+         const name = card.querySelector(".result-name").innerText
+        .replace(/[🥇🥈🥉]/g, "")
+        .replace(/\d+등/g, "")
+        .trim();
+        const payout = Number(card.dataset.payout || 0);
         let medal = "🏅";
         if(index===0) medal="🥇";
         if(index===1) medal="🥈";
