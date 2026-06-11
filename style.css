@@ -115,9 +115,6 @@ background:rgba(26,29,33,.85);
 backdrop-filter: blur(12px);
 margin-bottom:10px;
 }
-.card:has(.mode-selector){
-  margin-bottom: 4px;
-}
 /* ===== SECTION TITLES ===== */
 
 .player-header{
