@@ -124,26 +124,24 @@ function renderPayoutInputs(){
     let html = "";
     for(let i=1;i<=count;i++){
 
-        html += `
-        <div class="field">
+     html += `
+<div class="payout-row">
 
-            <label>
-            ${i}등 상금
-            </label>
+    <label>${i}등</label>
 
-     <input
-    type="text"
-    inputmode="numeric"
-    id="pay${i}"
-    placeholder="0"
-    value="${
-        existingValues[`pay${i}`]
-        || ""
-    }"
->
+    <input
+        type="text"
+        inputmode="numeric"
+        id="pay${i}"
+        placeholder="상금 입력"
+        value="${
+            existingValues[\`pay${i}\`]
+            || ""
+        }"
+    >
 
-        </div>
-        `;
+</div>
+`;
     }
 
     payoutInputsEl.innerHTML = html;
