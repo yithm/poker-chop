@@ -98,8 +98,13 @@ font-size:14px;
 
 }
 
-
-
+input::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+input.default-value {
+  color: var(--muted) !important;
+}
 /* ===== CARD ===== */
 .card{
 display:flex;
@@ -636,7 +641,7 @@ select {
   appearance: none;
 
   background-color: var(--card2) !important;
-  color: var(--text) !important;
+  color: var(--text) 
 }
 input {
   border-radius: 16px;
