@@ -32,24 +32,7 @@
                 </div>
             </div>
 
-          <section class="card">
 
-    <div class="field">
-        <label for="playerCount">플레이어 수</label>
-
-        <select id="playerCount">
-            <option value="2">2명</option>
-            <option value="3">3명</option>
-            <option value="4">4명</option>
-            <option value="5">5명</option>
-            <option value="6">6명</option>
-            <option value="7">7명</option>
-            <option value="8">8명</option>
-            <option value="9">9명</option>
-            <option value="10">10명</option>
-        </select>
-    </div>
-</section>
 
 <!-- 총 상금 단독 카드 -->
 <section class="card">
@@ -72,10 +55,29 @@
             <div id="payoutInputs"></div>
         </section>
 
-        <section class="card">
-            <h2>플레이어</h2>
-            <div id="playerInputs"></div>
-        </section>
+<section class="card">
+
+    <div class="player-header">
+
+        <h2>플레이어</h2>
+
+        <select id="playerCount">
+            <option value="2">2명</option>
+            <option value="3">3명</option>
+            <option value="4">4명</option>
+            <option value="5">5명</option>
+            <option value="6">6명</option>
+            <option value="7">7명</option>
+            <option value="8">8명</option>
+            <option value="9">9명</option>
+            <option value="10">10명</option>
+        </select>
+
+    </div>
+
+    <div id="playerInputs"></div>
+
+</section>
 
         <button id="calculateBtn" class="primary-btn">
             계산하기
