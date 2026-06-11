@@ -114,7 +114,7 @@ backdrop-filter: blur(12px);
     align-items:center;
     position:relative;
     top:-1px;
-    gap:6px;
+    gap:10px;
 }
 
 .player-header h2{
