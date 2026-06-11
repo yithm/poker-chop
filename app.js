@@ -12,6 +12,9 @@ const totalPaidEl = document.getElementById("totalPaid");
 const payoutStructureSection =
 document.getElementById("payoutStructureSection");
 
+const totalPrizeSection =
+document.getElementById("totalPrizeSection");
+
 const copyBtn = document.getElementById("copyBtn");
 
 const modeRadios =
@@ -151,16 +154,24 @@ function updateMode(){
     const mode = getMode();
 
     if(mode === "icm"){
+
         payoutStructureSection
         .classList.remove("hidden");
+
+        totalPrizeSection
+        .classList.add("hidden");
+
     }else{
+
         payoutStructureSection
         .classList.add("hidden");
+
+        totalPrizeSection
+        .classList.remove("hidden");
     }
 
     renderPayoutInputs();
 }
-
 playerCountEl.addEventListener(
     "change",
     ()=>{
