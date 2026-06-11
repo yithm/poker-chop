@@ -114,6 +114,7 @@ padding:var(--space-3);
 box-shadow:var(--shadow);
 background:rgba(26,29,33,.85);
 backdrop-filter: blur(12px);
+margin-bottom:10px;
 }
 
 /* ===== SECTION TITLES ===== */
@@ -375,7 +376,7 @@ transition:.2s;
   letter-spacing:-0.1px;
   background:var(--accent);
   color:white;
-  margin:12px auto 8px;
+  margin:16px auto 8px;
   display:block;
 
 }
