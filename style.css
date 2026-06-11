@@ -158,11 +158,6 @@ margin-bottom:10px;
     top:1px;
 }
 
-::placeholder{
-    color:#7d8692;
-    opacity:1;
-}
-
 /* ===== FORM ===== */
 
 .field{
@@ -232,46 +227,42 @@ select:focus {
 /* ===== MODE SELECT ===== */
 
 .mode-selector{
-  display:grid;
-  grid-template-columns:repeat(2, 1fr);
-  gap:12px;
-  align-items:stretch;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+
+  width: 100%;
+  padding: 0 12px; /* 🔥 좌우 여백 균등 */
+  box-sizing: border-box;
 }
 
 .radio-card{
-  display:block;
+  display: block;
+  width: 100%; /* 🔥 카드 자체도 꽉 차게 */
 }
 
 .radio-card input{
-
-display:none;
-
+  display: none;
 }
 
 .radio-card span{
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  height:36px;
-  font-size:14px;
+  width: 100%; /* 🔥 핵심: 동일 너비 보장 */
+  height: 36px;
 
-  border-radius:16px;
-  border:1px solid var(--border);
+  font-size: 14px;
+  font-weight: 700;
 
-  background:var(--card2);
+  border-radius: 16px;
+  border: 1px solid var(--border);
 
-  font-weight:700;
-  transition:.2s;
-}
-.radio-card input:checked + span{
+  background: var(--card2);
+  box-sizing: border-box;
 
-background:rgba(79,140,255,.12);
-
-border-color:var(--accent);
-
-color:var(--accent);
-
+  transition: .2s;
 }
 /* ===== ICM 상금 구조 ===== */
 
