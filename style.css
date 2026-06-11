@@ -232,6 +232,7 @@ select:focus {
   gap: 12px;
 
   width: 100%;
+  padding: 0 12px; /* 🔥 좌우 여백 균등 */
   box-sizing: border-box;
 }
 
@@ -262,6 +263,13 @@ select:focus {
   box-sizing: border-box;
 
   transition: .2s;
+}
+
+/* 선택 상태 */
+.radio-card input:checked + span{
+  background: rgba(79,140,255,.12);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 /* ===== ICM 상금 구조 ===== */
 
