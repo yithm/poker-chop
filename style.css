@@ -299,13 +299,15 @@ transition:.2s;
 
 .primary-btn{
   box-shadow:0 6px 16px rgba(79,140,255,.2);
-  width:100px;
+  justify-content:center;
+  align-items:center;
+  width:160px;
   height:40px;
   padding:8px;
   font-size:16px;
-  font-weight:800;
+  font-weight:700;
   border-radius:16px;
-  letter-spacing:-0.3px;
+  letter-spacing:-0.1px;
   background:var(--accent);
   color:white;
   margin-bottom:var(--space-2);
