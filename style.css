@@ -107,15 +107,6 @@ backdrop-filter: blur(12px);
 
 /* ===== SECTION TITLES ===== */
 
-h2{
-
-font-size:16px;
-
-margin-bottom:var(--space-2);
-
-color:var(--text);
-
-}
 .player-header{
 
     display:flex;
@@ -128,15 +119,27 @@ color:var(--text);
 
 }
 
+.player-header h2{
+
+    margin:0;
+
+    font-size:15px;
+
+    line-height:32px;
+
+}
+
 .player-header select{
 
-    width:72px !important;
+    width:68px !important;
 
-    height:34px;
+    height:32px;
 
     padding:0 8px;
 
     font-size:13px;
+
+    border-radius:10px;
 
 }
 /* ===== FORM ===== */
