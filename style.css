@@ -235,15 +235,11 @@ select:focus {
   display:grid;
   grid-template-columns:repeat(2, 1fr);
   gap:12px;
-  margin:0;
-  padding:0;
-  width:100%;
-  box-sizing:border-box;
+  align-items:stretch;
 }
 
 .radio-card{
-  width:100%;
-  box-sizing:border-box;
+  display:block;
 }
 
 .radio-card input{
@@ -253,27 +249,12 @@ display:none;
 }
 
 .radio-card span{
-
-display:flex;
-
-justify-content:center;
-align-items:center;
-
-    height:36px;
-    font-size:14px;
-
-border-radius:16px;
-
-background:var(--card2);
-
-border:1px solid var(--border);
-
-font-weight:700;
-
-transition:.2s;
-   width:100%;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
   box-sizing:border-box;
-
 }
 
 .radio-card input:checked + span{
