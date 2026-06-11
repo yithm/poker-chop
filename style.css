@@ -447,7 +447,14 @@ opacity:.92;
 }
 /* ===== RESULTS ===== */
 #resultsSection{
-  padding-top: 12px;
+  padding-top: 6px;
+}
+#totalPaid{
+  margin-bottom: 8px;
+}
+
+#results{
+  margin-top: 8px;
 }
 .result-card{
 position:relative;
