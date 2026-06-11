@@ -84,13 +84,23 @@ color:var(--text);
 margin-bottom:2px;
 
 }
+h2{
 
+    padding-left:6px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
 .subtitle{
 
 color:var(--muted);
 font-size:14px;
 
 }
+
+
 
 /* ===== CARD ===== */
 .card{
