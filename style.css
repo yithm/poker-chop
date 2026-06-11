@@ -124,29 +124,19 @@ color:var(--text);
 
     align-items:center;
 
-    margin-bottom:12px;
-
-}
-
-.player-header h2{
-
-    margin:0;
+    margin-bottom:10px;
 
 }
 
 .player-header select{
 
-    width:90px;
+    width:72px !important;
 
-    font-size:14px;
+    height:34px;
 
-    padding:6px 10px;
+    padding:0 8px;
 
-}
-.player-header select{
-
-    width:90px !important;
-    flex:none;
+    font-size:13px;
 
 }
 /* ===== FORM ===== */
