@@ -123,19 +123,26 @@ backdrop-filter: blur(12px);
 
     margin:0;
 
+    padding-left:4px;
+    
     font-size:15px;
 
 }
 
 .player-header select{
 
-    width:68px !important;
+width:68px !important;
 
-    height:32px;
+height:24px;
 
-    font-size:13px;
+font-size:13px;
+
+text-align:center;
+
+text-align-last:center;
 
 }
+
 /* ===== FORM ===== */
 
 .field{
@@ -150,11 +157,14 @@ display:block;
 
 margin-bottom:8px;
 
+padding-left:4px;
+
 font-size:14px;
 
 font-weight:600;
 
 color:#d7dce3;
+    
 
 }
 
