@@ -112,9 +112,7 @@ backdrop-filter: blur(12px);
 
     align-items:center;
 
-    gap:12px;
-
-    margin-bottom:0;
+    gap:8px;
 
 }
 
@@ -122,11 +120,11 @@ backdrop-filter: blur(12px);
 
     margin:0;
 
-    padding-left:16px;
+    padding-left:8px;
 
     font-size:15px;
 
-    line-height:26px;
+    line-height:1;
 
 }
 
@@ -134,15 +132,11 @@ backdrop-filter: blur(12px);
 
     width:58px !important;
 
-    height:26px;
+    height:28px;
 
-    padding:4px;
-    
-    margin:0;
+    padding:0;
 
-    font-size:14px;
-
-    line-height:26px;
+    font-size:13px;
 
     text-align:center;
 
@@ -176,7 +170,7 @@ color:#d7dce3;
 
 input,
 select{
-  height: 26px;
+  height: 28px;
   padding: 0 12px;
 border-radius:16px;
   line-height: 1.2;
@@ -539,8 +533,7 @@ display:none;
 @media (max-width:600px){
 
 body{
-padding:12px;
-
+    padding:16px;
 }
 
 h1{
@@ -550,9 +543,7 @@ font-size:18px;
 }
 
 .card{
-
-padding:var(--space-1);
-
+    padding:var(--space-3);
 }
 
 .primary-btn{
