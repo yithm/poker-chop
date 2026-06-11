@@ -143,6 +143,12 @@ color:var(--text);
     padding:6px 10px;
 
 }
+.player-header select{
+
+    width:90px !important;
+    flex:none;
+
+}
 /* ===== FORM ===== */
 
 .field{
