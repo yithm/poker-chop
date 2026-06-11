@@ -111,9 +111,9 @@ backdrop-filter: blur(12px);
 
     display:flex;
 
-    justify-content:space-between;
-
     align-items:center;
+
+    gap:10px;
 
     margin-bottom:10px;
 
@@ -125,21 +125,15 @@ backdrop-filter: blur(12px);
 
     font-size:15px;
 
-    line-height:32px;
-
 }
 
 .player-header select{
 
-    width:40px !important;
+    width:68px !important;
 
     height:32px;
 
-    padding:0 8px;
-
     font-size:13px;
-
-    border-radius:10px;
 
 }
 /* ===== FORM ===== */
