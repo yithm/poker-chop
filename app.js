@@ -147,6 +147,9 @@ function renderPayoutInputs(){
 function updateMode(){
 
     const mode = getMode();
+    resultsEl.innerHTML = "";
+    totalPaidEl.innerText = "";
+    resultsSection.classList.add("hidden");
 
     if(mode === "icm"){
 
