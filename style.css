@@ -451,8 +451,8 @@ opacity:.92;
 position:relative;
 border:1px solid var(--border);
 border-radius:16px;
-padding:var(--space-4);
-margin-bottom:var(--space-2);
+padding: 10px 60px 10px 60px;
+margin-bottom:var(--space-1);
 background:rgba(26,29,33,.85);
 backdrop-filter: blur(12px);
 
