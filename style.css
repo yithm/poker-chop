@@ -113,7 +113,6 @@ backdrop-filter: blur(12px);
     display:flex;
     align-items:center;
     position:relative;
-    top:-1px;
     gap:10px;
 }
 
@@ -311,7 +310,9 @@ transition:.2s;
   letter-spacing:-0.1px;
   background:var(--accent);
   color:white;
-  margin-bottom:var(--space-2);
+  margin:0 auto 8px;
+  display:block;
+
 }
 .primary-btn:active{
   transform:scale(0.97);
