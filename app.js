@@ -518,7 +518,8 @@ copyBtn.addEventListener("click", ()=>{
         .replace(/[🥇🥈🥉]/g, "")
         .replace(/\d+등/g, "")
         .trim();
-        const payout = Number(card.dataset.payout || 0);
+    const payoutText = card.querySelectorAll(".result-value")[2].innerText;
+    const payout = Number(payoutText.replace(/[^0-9]/g, ""));
         let medal = "🏅";
         if(index===0) medal="🥇";
         if(index===1) medal="🥈";
