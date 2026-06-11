@@ -285,12 +285,11 @@ color:var(--accent);
 .payout-row{
 
     display:flex;
-
     align-items:center;
-
     gap:10px;
-
     margin-bottom:8px;
+
+    padding-left:8px;
 
 }
 
