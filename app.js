@@ -509,7 +509,7 @@ copyBtn.addEventListener("click", ()=>{
 
     const mode = getMode() === "chip" ? "Chip Chop" : "ICM Chop";
 
-    let text = "♠ 포커룰루 딜 결과 ♠\n\n";
+    let text = "♠ 프라이즈 시상 안내 ♠\n\n";
     text += `계산방식 : ${mode}\n\n`;
 
     cards.forEach((card,index)=>{
