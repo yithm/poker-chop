@@ -238,7 +238,9 @@ select:focus {
   display:grid;
   grid-template-columns:repeat(2, 1fr);
   gap:12px;
+
   width:100%;
+  padding: 0 0;
 }
 
 .radio-card{
