@@ -446,13 +446,16 @@ opacity:.92;
 
 #results{
   margin-top: 12px;
+ display: grid;  
+ grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
  
 }
 .result-card{
 position:relative;
 border:1px solid var(--border);
 border-radius:16px;
-padding: 6px 120px 6px 120px;
+padding: 12px;
 margin-bottom:var(--space-1);
 background:rgba(26,29,33,.85);
 backdrop-filter: blur(12px);
@@ -634,7 +637,17 @@ font-size:16px;
     flex: none;
   }
 }
+@media (max-width: 900px){
+  #results{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
+@media (max-width: 600px){
+  #results{
+    grid-template-columns: 1fr;
+  }
+}
 input,
 select {
   -webkit-appearance: none;
