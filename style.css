@@ -232,7 +232,6 @@ select:focus {
   gap: 12px;
 
   width: 100%;
-  padding: 0 12px; /* 🔥 좌우 여백 균등 */
   box-sizing: border-box;
 }
 
