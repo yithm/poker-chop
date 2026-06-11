@@ -34,7 +34,11 @@ box-sizing:border-box;
  --label-weight:600;
 
 }
-
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
 /* ===== BODY ===== */
 
 body{
