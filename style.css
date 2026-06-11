@@ -249,14 +249,21 @@ display:none;
 }
 
 .radio-card span{
-  width:100%;
   display:flex;
   justify-content:center;
   align-items:center;
-  text-align:center;
-  box-sizing:border-box;
-}
 
+  height:36px;
+  font-size:14px;
+
+  border-radius:16px;
+  border:1px solid var(--border);
+
+  background:var(--card2);
+
+  font-weight:700;
+  transition:.2s;
+}
 .radio-card input:checked + span{
 
 background:rgba(79,140,255,.12);
