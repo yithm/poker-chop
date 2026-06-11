@@ -85,13 +85,12 @@ margin-bottom:2px;
 
 }
 h2{
-
     padding-left:6px;
 
-    font-size:14px;
+    font-size:var(--label-size);
+    font-weight:var(--label-weight);
 
-    font-weight:600;
-
+    color:#d7dce3;
 }
 .subtitle{
 
