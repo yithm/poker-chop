@@ -538,8 +538,8 @@ border-top:1px solid var(--border);
 .summary-row{
 
 display:flex;
-
-gap:140px;
+justify-content:center;
+gap:80px;
 
 font-size:15px;
 
